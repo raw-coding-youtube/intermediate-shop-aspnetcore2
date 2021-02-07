@@ -1,0 +1,73 @@
+﻿@page
+@model Shop.UI.Pages.Checkout.CustomerInformationModel
+@{
+}
+
+<div class="columns">
+    <div class="column is-6">
+        <form method="post">
+            <div class="field">
+                <p class="control">
+                    <label class="label">First Name</label>
+                    <input class="input" asp-for="CustomerInformation.FirstName" />
+                </p>
+                <span class="help is-danger" asp-validation-for="CustomerInformation.FirstName"></span>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <label class="label">Last Name</label>
+                    <input class="input" asp-for="CustomerInformation.LastName" />
+                </p>
+                <span class="help is-danger" asp-validation-for="CustomerInformation.LastName"></span>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <label class="label">Phone</label>
+                    <input class="input" asp-for="CustomerInformation.PhoneNumber" />
+                </p>
+                <span class="help is-danger" asp-validation-for="CustomerInformation.PhoneNumber"></span>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <label class="label">Email</label>
+                    <input class="input" asp-for="CustomerInformation.Email" />
+                </p>
+                <span class="help is-danger" asp-validation-for="CustomerInformation.Email"></span>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <label class="label">Address1</label>
+                    <input class="input" asp-for="CustomerInformation.Address1" />
+                </p>
+                <span class="help is-danger" asp-validation-for="CustomerInformation.Address1"></span>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <label class="label">Address2</label>
+                    <input class="input" asp-for="CustomerInformation.Address2" />
+                </p>
+                <span class="help is-danger" asp-validation-for="CustomerInformation.Address2"></span>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <label class="label">City</label>
+                    <input class="input" asp-for="CustomerInformation.City" />
+                </p>
+                <span class="help is-danger" asp-validation-for="CustomerInformation.City"></span>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <label class="label">Post Code</label>
+                    <input class="input" asp-for="CustomerInformation.PostCode" />
+                </p>
+                <span class="help is-danger" asp-validation-for="CustomerInformation.PostCode"></span>
+            </div>
+            <div class="field">
+                <button class="button is-success" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="column is-6">
+        <vc:cart view="Default"></vc:cart>
+    </div>
+</div>

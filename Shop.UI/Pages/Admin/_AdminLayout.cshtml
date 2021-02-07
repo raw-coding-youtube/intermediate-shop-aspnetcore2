@@ -1,0 +1,57 @@
+﻿@inject IAuthorizationService authService
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Shop.UI</title>
+
+    <environment include="Development">
+        <link href="~/lib/bulma-0.7.2/css/bulma.css" rel="stylesheet" />
+    </environment>
+    <environment include="Production">
+        <link href="~/lib/bulma-0.7.2/css/bulma.min.css" rel="stylesheet" />
+    </environment>
+</head>
+<body>
+    <h3 class="title has-text-centered">Admin Panel</h3>
+
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3">
+                <div class="menu">
+                    @if ((await authService.AuthorizeAsync(User, "Manager")).Succeeded)
+                    {
+                        <p class="menu-label">Store Menu</p>
+                        <ul class="menu-list">
+                            <li><a asp-page="/Admin/Index">Products</a></li>
+                            <li><a asp-page="/Admin/OrderManagement">Order Management</a></li>
+                            <li><a asp-page="/Admin/Stock">Stock</a></li>
+                        </ul>
+                    }
+                    @if ((await authService.AuthorizeAsync(User, "Admin")).Succeeded)
+                    {
+                        <p class="menu-label">Admin Menu</p>
+                        <ul class="menu-list">
+                            <li><a asp-page="/Admin/ConfigureUsers">Configure Users</a></li>
+                        </ul>
+                    }
+                    <p class="menu-label"></p>
+                    <ul class="menu-list">
+                        <li><a asp-page="/Index">Back to Main</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="column is-9">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

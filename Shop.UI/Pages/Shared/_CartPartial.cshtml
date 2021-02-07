@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Shop.Application.Cart.GetCart.Response>
+
+<div class="column is-8 is-offset-2" id="cart-main">
+    @foreach (var product in Model)
+    {
+        <div class="level">
+            <div class="level-item">
+                <figure class="image is-128x128">
+                    <img src="~/images/item.jpg" />
+                </figure>
+            </div>
+            <div class="level-item">
+                <p class="title">
+                    @product.Name
+                </p>
+            </div>
+            <div class="level-item">
+                <div class="columns is-gapless has-text-centered is-mobile is-multiline">
+                    <div class="column is-4">
+                        <button class="button" type="button"
+                                onclick="removeOneFromCart(event)"
+                                data-stock-id="@product.StockId">
+                            -
+                        </button>
+                    </div>
+                    <div class="column is-4 align-self-center" id="stock-qty-@product.StockId">
+                        @product.Qty
+                    </div>
+                    <div class="column is-4">
+                        <button class="button" type="button"
+                                onclick="addOneToCart(event)"
+                                data-stock-id="@product.StockId">
+                            +
+                        </button>
+                    </div>
+                    <div class="column is-12">
+                        <a class="has-text-danger"
+                           onclick="removeAllFromCart(event)"
+                           data-stock-id="@product.StockId">Remove</a>
+                    </div>
+                </div>
+            </div>
+            <div class="level-item">
+                <p>@product.Value</p>
+            </div>
+        </div>
+    }
+
+    <div class="has-text-right">
+        <a asp-page="/Index" class="button is-text">Ey let me buy some more eh</a>
+        @if (Model.Count() > 0)
+        {
+            <a asp-page="/Checkout/CustomerInformation" class="button is-success">Checkout</a>
+        }
+    </div>
+</div>
